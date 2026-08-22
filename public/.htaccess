@@ -1,0 +1,45 @@
+# Configuração do Apache para a hospedagem compartilhada da Hostinger.
+# Este arquivo é copiado para dentro de out/ no build e deve ir junto
+# com o restante dos arquivos para o public_html.
+
+# Página de erro gerada pelo Next.
+ErrorDocument 404 /404.html
+
+# Força HTTPS.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Compressão.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Os arquivos em /_next/static têm hash no nome: podem ser cacheados
+  # para sempre, porque qualquer mudança gera um nome novo.
+  <FilesMatch "\.(js|css|woff2)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, immutable"
+  </FilesMatch>
+
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+
+  # HTML nunca é cacheado: é o que garante que uma republicação
+  # apareça na hora para quem já visitou o site.
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
