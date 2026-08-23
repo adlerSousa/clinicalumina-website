@@ -72,18 +72,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.font-display {
-  font-family: var(--font-display);
-  font-weight: 300;
-  letter-spacing: 0.01em;
-}
+@layer base {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
 
-.overline {
-  font-size: 0.6875rem;
-  font-weight: 400;
-  letter-spacing: var(--tracking-luxe);
-  text-transform: uppercase;
-  line-height: 1.5;
+  .overline {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: var(--tracking-luxe);
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
 }
 
 :where(a, button, [tabindex]):focus-visible {

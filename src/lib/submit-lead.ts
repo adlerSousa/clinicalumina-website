@@ -17,7 +17,7 @@ export type SubmitResult = { ok: true } | { ok: false; error: string };
 function buildPayload(lead: Lead): Record<string, string> {
   const payload: Record<string, string> = {
     access_key: ACCESS_KEY,
-    subject: `Novo lead — ${lead.name}`,
+    subject: `Novo lead: ${lead.name}`,
     from_name: `Site ${site.name}`,
     Nome: lead.name,
     WhatsApp: lead.whatsapp,

@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex min-h-dvh flex-col items-center justify-center px-6 py-16 text-center">
       <Image
         src={asset(site.brand.logoLockupDark)}
-        alt={`${site.name} — ${site.tagline}`}
+        alt={`${site.name} · ${site.tagline}`}
         width={1000}
         height={637}
         priority

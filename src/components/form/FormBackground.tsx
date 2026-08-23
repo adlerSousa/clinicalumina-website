@@ -3,7 +3,7 @@ import Image from "next/image";
 import { site } from "@/config/site";
 import { asset } from "@/lib/asset";
 
-const OVERSCAN_LG = "119%";
+const OVERSCAN_LG = "112%";
 
 export function FormBackground() {
   return (
@@ -18,7 +18,7 @@ export function FormBackground() {
           fill
           priority
           sizes="(min-width: 1024px) 119vw, 100vw"
-          className="object-cover object-[42%_14%] sm:object-[44%_18%] lg:object-[50%_22%]"
+          className="object-cover object-[42%_14%] sm:object-[44%_18%] lg:object-[50%_26%]"
         />
       </div>
 

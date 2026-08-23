@@ -34,7 +34,7 @@ export function ThanksStep({
         {site.consultation.price}
       </p>
 
-      <p className="mx-auto mt-4 max-w-xs text-pretty text-[0.8125rem] leading-relaxed text-nude-200/50">
+      <p className="font-display mx-auto mt-6 max-w-sm text-balance text-[1.25rem] font-medium italic leading-snug text-white">
         {step.priceNote}
       </p>
 

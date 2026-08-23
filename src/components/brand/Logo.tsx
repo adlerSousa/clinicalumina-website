@@ -16,7 +16,7 @@ export function LogoLockup({
   return (
     <Image
       src={asset(site.brand.logoLockup)}
-      alt={`${site.name} — ${site.tagline}`}
+      alt={`${site.name} · ${site.tagline}`}
       width={1000}
       height={637}
       priority={priority}

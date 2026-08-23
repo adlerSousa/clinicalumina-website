@@ -17,8 +17,9 @@ export type Step =
       kind: "gallery";
       id: string;
       label: string;
-      question: string;
-      help?: string;
+      title: string;
+      body: string[];
+      highlight: string;
       photos: GalleryPhoto[];
       options: { value: string; label: string }[];
     }
@@ -65,15 +66,12 @@ export type Step =
       nextStep: string;
     };
 
-const TOTAL_RESULTADOS = 9;
+const RESULTADOS = [2, 3, 4, 5, 6, 7, 8, 9];
 
-const resultados: GalleryPhoto[] = Array.from(
-  { length: TOTAL_RESULTADOS },
-  (_, i) => ({
-    src: asset(`/images/resultados/ad-${i + 1}.webp`),
-    alt: `Antes e depois de harmonização facial — resultado ${i + 1}`,
-  }),
-);
+const resultados: GalleryPhoto[] = RESULTADOS.map((n, i) => ({
+  src: asset(`/images/resultados/ad-${n}.webp`),
+  alt: `Antes e depois de harmonização facial, resultado ${i + 1}`,
+}));
 
 export const steps: Step[] = [
   {
@@ -88,9 +86,13 @@ export const steps: Step[] = [
   {
     kind: "gallery",
     id: "resultados",
-    label: "Reação aos resultados",
-    question: "Veja o que a harmonização facial pode fazer pela sua confiança.",
-    help: "Resultados de quem passou por aqui. Em todos eles os traços continuaram os mesmos — o que mudou foi a forma de se olhar no espelho.",
+    label: "Reação ao Método Lumina",
+    title: "Método Lumina",
+    body: [
+      "Uma abordagem exclusiva de reestruturação facial, criada para esculpir e harmonizar cada rosto de forma individual, respeitando sua anatomia, proporções e beleza natural.",
+      "Mais do que realizar procedimentos, o Método Lumina parte de um planejamento personalizado para valorizar contornos, equilibrar proporções e realçar o que cada paciente tem de mais bonito.",
+    ],
+    highlight: "Naturalidade, equilíbrio e sofisticação em cada detalhe.",
     photos: resultados,
     options: [
       { value: "quero_igual", label: "Também quero me sentir assim" },
@@ -102,7 +104,6 @@ export const steps: Step[] = [
     id: "incomodo",
     label: "O que mais incomoda ao se olhar no espelho",
     question: "O que mais incomoda quando você olha no espelho?",
-    help: "Escreva com suas palavras — não existe resposta errada.",
     placeholder: "Digite sua resposta aqui...",
     required: true,
     maxLength: 500,
@@ -148,7 +149,7 @@ export const steps: Step[] = [
     priceCaption: `Consulta com a ${site.doctor.name}`,
     priceNote: site.consultation.note,
     cta: "Agendar minha consulta",
-    nextStep: "Você será direcionada ao WhatsApp para escolher o melhor horário com a nossa equipe.",
+    nextStep: "Você será direcionado(a) ao WhatsApp para escolher o melhor horário com a nossa equipe.",
   },
 ];
 
