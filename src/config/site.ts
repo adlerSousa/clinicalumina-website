@@ -12,7 +12,7 @@ export const site = {
 
   contact: {
     whatsapp: "5528999816346",
-    email: "contato@luminaes.com.br",
+    email: "luminaesb@gmail.com",
     address: "",
     city: "",
   },
