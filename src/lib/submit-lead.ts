@@ -9,6 +9,7 @@ export type Lead = {
   name: string;
   whatsapp: string;
   answers: LeadAnswer[];
+  consentAt: string;
   botcheck?: string;
 };
 
@@ -22,6 +23,10 @@ function buildPayload(lead: Lead): Record<string, string> {
     Nome: lead.name,
     WhatsApp: lead.whatsapp,
   };
+
+  payload["Consentimento LGPD"] = `Autorizado em ${new Date(
+    lead.consentAt,
+  ).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}`;
 
   for (const { label, value } of lead.answers) {
     let chave = label;

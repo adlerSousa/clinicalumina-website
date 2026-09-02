@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 import { StepQuestion, StepShell } from "@/components/form/StepShell";
 import { StepFooter } from "@/components/form/StepFooter";
+import { ConsentCheckbox } from "@/components/ui/ConsentCheckbox";
 import { TextInput, FieldLabel, FieldError } from "@/components/ui/Field";
 import type { Step } from "@/config/form";
 import { useAutoFocus } from "@/lib/use-autofocus";
@@ -12,7 +13,9 @@ type Props = {
   step: Extract<Step, { kind: "contact" }>;
   name: string;
   whatsapp: string;
-  errors: { name?: string; whatsapp?: string; submit?: string };
+  errors: { name?: string; whatsapp?: string; consent?: string; submit?: string };
+  consent: boolean;
+  onConsentChange: (checked: boolean) => void;
   number: number;
   submitting: boolean;
   botcheck: string;
@@ -30,6 +33,8 @@ export function ContactStep({
   errors,
   number,
   submitting,
+  consent,
+  onConsentChange,
   botcheck,
   onBotcheckChange,
   onNameChange,
@@ -105,12 +110,16 @@ export function ContactStep({
           className="absolute left-[-9999px] size-px opacity-0"
         />
 
-        <FieldError>{errors.submit}</FieldError>
+        <div>
+          <ConsentCheckbox
+            checked={consent}
+            invalid={Boolean(errors.consent)}
+            onChange={onConsentChange}
+          />
+          <FieldError>{errors.consent}</FieldError>
+        </div>
 
-        <p className="text-xs leading-relaxed text-nude-200/45">
-          Seus dados são usados apenas para o retorno da nossa equipe e não são
-          compartilhados com terceiros.
-        </p>
+        <FieldError>{errors.submit}</FieldError>
       </form>
 
       <StepFooter

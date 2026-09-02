@@ -14,7 +14,12 @@ import { answerableSteps, steps } from "@/config/form";
 import { isValidPhone, maskPhone } from "@/lib/phone";
 import { submitLead, type LeadAnswer } from "@/lib/submit-lead";
 
-type Errors = { name?: string; whatsapp?: string; submit?: string };
+type Errors = {
+  name?: string;
+  whatsapp?: string;
+  consent?: string;
+  submit?: string;
+};
 
 const EXIT_MS = 220;
 const FOLLOW_UP = "__detalhe";
@@ -28,6 +33,7 @@ export function EvaluationForm() {
 
   const [name, setName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [consent, setConsent] = useState(false);
   const [botcheck, setBotcheck] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -113,6 +119,9 @@ export function EvaluationForm() {
     if (!isValidPhone(whatsapp)) {
       nextErrors.whatsapp = "Digite um WhatsApp válido com DDD.";
     }
+    if (!consent) {
+      nextErrors.consent = "Precisamos da sua autorização para continuar.";
+    }
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
@@ -122,6 +131,7 @@ export function EvaluationForm() {
       name: name.trim(),
       whatsapp,
       answers: collectAnswers(),
+      consentAt: new Date().toISOString(),
       botcheck,
     });
     setSubmitting(false);
@@ -204,6 +214,11 @@ export function EvaluationForm() {
             errors={errors}
             number={questionNumber ?? 1}
             submitting={submitting}
+            consent={consent}
+            onConsentChange={(v) => {
+              setConsent(v);
+              setErrors((e) => ({ ...e, consent: undefined }));
+            }}
             onBotcheckChange={setBotcheck}
             onNameChange={(v) => {
               setName(v);
