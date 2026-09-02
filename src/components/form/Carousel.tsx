@@ -102,7 +102,8 @@ export function Carousel({ photos }: { photos: GalleryPhoto[] }) {
             aria-label={`Ir para o resultado ${i + 1}`}
             aria-current={i === index}
             className={cn(
-              "h-1 rounded-full transition-all duration-300 ease-[var(--ease-luxe)]",
+              "relative h-1 rounded-full transition-all duration-300 ease-[var(--ease-luxe)]",
+              "before:absolute before:inset-x-0 before:-inset-y-5 before:content-['']",
               i === index ? "w-6 bg-gold-400" : "w-2 bg-white/30 hover:bg-white/50",
             )}
           />
@@ -114,7 +115,7 @@ export function Carousel({ photos }: { photos: GalleryPhoto[] }) {
 
 function arrow(side: string) {
   return cn(
-    "absolute top-[calc(50%-1.25rem)] grid size-10 place-items-center",
+    "absolute top-[calc(50%-1.375rem)] grid size-11 place-items-center",
     "text-white [filter:drop-shadow(0_1px_3px_rgba(0,0,0,0.85))]",
     "transition-opacity duration-300 hover:opacity-70",
     "disabled:pointer-events-none disabled:opacity-0",

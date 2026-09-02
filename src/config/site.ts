@@ -2,7 +2,7 @@ export const site = {
   name: "Dra. Jenifer Vieira",
   shortName: "Jenifer Vieira",
   tagline: "Harmonização Facial",
-  url: "https://www.jenifervieira.com.br",
+  url: "https://luminaes.com.br",
 
   doctor: {
     name: "Dra. Jenifer",
@@ -11,8 +11,8 @@ export const site = {
   },
 
   contact: {
-    whatsapp: "5500000000000",
-    email: "contato@jenifervieira.com.br",
+    whatsapp: "5528999816346",
+    email: "contato@luminaes.com.br",
     address: "",
     city: "",
   },

@@ -23,7 +23,7 @@ export function StepFooter({
         <button
           type="button"
           onClick={onBack}
-          className="ml-auto py-2 text-[0.6875rem] uppercase tracking-[0.18em] text-nude-200/50 transition-colors hover:text-white"
+          className="ml-auto inline-flex min-h-11 items-center px-2 text-[0.6875rem] uppercase tracking-[0.18em] text-nude-200/50 transition-colors hover:text-white"
         >
           ← Voltar
         </button>
